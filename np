@@ -7,7 +7,7 @@ import os, sys
 av = sys.argv
 ac = len(av)
 
-PATH = "~/Documents/Tek2/lib"
+PATH = "~/Documents/Tek2/lib" # modify this line with your np path
 CPPEXT = 'cpp'
 TYPE = None
 DIR = None
