@@ -5,11 +5,15 @@ This program is a shortcut to create new projects. It copies your main files to 
 # Installation
 
 ```bash
-git clone <<A REMPLIR>> && cd fileGen
+git clone https://github.com/EvanKoe/np.git && cd np
 ```
 Then, create a link in your path to use it everywhere :  
 ```bash
 sudo ln np /usr/bin
+```
+Then edit the `np` file and replace the `PATH` variable with the directory that contains your np file :
+```
+10 | PATH = "~/Documents/Tek2/lib"  <-- replace with your np directory (without any final '/')
 ```
 
 # Usage
