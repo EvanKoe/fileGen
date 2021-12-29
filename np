@@ -1,0 +1,68 @@
+#!/bin/python3
+
+import os, sys
+
+# np NewProject, a program that generates sample files for you
+
+av = sys.argv
+ac = len(av)
+
+PATH = "~/Documents/Tek2/lib"
+CPPEXT = 'cpp'
+TYPE = None
+DIR = None
+NAME = 'main'
+
+if "-h" in av:
+    print("np, a program that generates sample files for you.\n\tUSAGE:")
+    print("np -t TYPE -d DIR -n NAME")
+    print("\tTYPE : sh, C, Cpp/C++")
+    print("\tNAME : name of your file without extension")
+    print("\tDIR : destination directory")
+    exit (0)
+if ac == 1:
+    print("Error: wrong arguments")
+    exit (84)
+
+for i in range(1, ac - 1):
+    if "-t" in av[i] and av[i + 1] != None:
+        TYPE = av[i + 1]
+    elif "-d" in av[i] and av[i + 1] != None:
+        DIR = av[i + 1]
+        if DIR[len(DIR) - 1] == '/':
+            DIR = DIR[:-1]
+    elif "-n" in av[i] and av[i + 1] != None:
+        NAME = av[i + 1]
+
+if TYPE == None or DIR == None:
+    print("Error: wrong arguments")
+    exit (84)
+
+if os.path.isfile(DIR):
+    print(f"Error: {DIR} already exist and is a file")
+    exit (84)
+if not os.path.isdir(DIR):
+    os.system(f"mkdir {DIR}")
+    print(f"{DIR} doesn't exist. Directory created.")
+
+TYPE = TYPE.lower()
+
+def alreadyExists(ext):
+    global DIR, NAME
+    a = input(f"{DIR}/{NAME}.{ext} already exists. Do you want to overwrite ? (N/y)")
+    return a.lower() == 'y'
+
+def copy(ext):
+    global DIR, NAME
+    if os.path.exists(f"{DIR}/{NAME}.{ext}") and not alreadyExists(ext):
+        print("Program finished. Nothing done.")
+        exit (0)
+    os.system(f"cp {PATH}/main.{ext} {DIR}/{NAME}.{ext} ")
+    if ext == 'sh':
+        os.system(f"chmod a+x {DIR}/{NAME}.{ext}")
+        print(f"File {DIR}/{NAME}.{ext} created with execution rights.")
+    else:
+        print(f"File {DIR}/{NAME}.{ext} created with return 0.")
+
+copy(TYPE)
+exit (0)
