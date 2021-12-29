@@ -1,4 +1,4 @@
-# FileGEN - a program that generates sample files for you
+# NP - a program that generates sample files for you
 
 This program is a shortcut to create new projects. It copies your main files to the directory of your choice, using a given extension (sh, c, cpp).
 
